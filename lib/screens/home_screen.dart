@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:components_app/router/app_router.dart';
+import 'package:components_app/theme/app_theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,14 +13,19 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: ListView.separated(
-        itemCount: 10,
-        itemBuilder: (context, index) => ListTile(
-          title: Text('item $index'),
-          leading: const Icon(Icons.add),
-          onTap: () {
-            Navigator.pushNamed(context, 'card');
-          },
-        ),
+        itemCount: AppRouter.menuOpt.length,
+        itemBuilder: (context, i) {
+          final opt = AppRouter.menuOpt[i];
+
+          return ListTile(
+            title: Text( opt.name ),
+            leading: Icon(opt.icon , color: AppTheme.primary),
+            trailing: Icon( Icons.arrow_forward_ios, color: AppTheme.primary ),
+            onTap: () {
+              Navigator.pushNamed(context, opt.route);
+            },
+          );
+        },
         separatorBuilder: (_, __) => const Divider(),
       ),
     );

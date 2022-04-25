@@ -33,14 +33,22 @@ class AppRouter {
         route: 'alert'),
   ];
 
-  // static Map<String, Widget Function(BuildContext)> buildRoute;
+  static Map<String, Widget Function(BuildContext)> buildRoute() {
+    final Map<String, Widget Function(BuildContext)> routes = {};
 
-  static Map<String, Widget Function(BuildContext)> routes = {
-    '': (_) => const HomeScreen(),
-    'listview': (_) => Lisview2Screen(),
-    'alert': (_) => const AlertScreen(),
-    'card': (_) => const CardScreen(),
-  };
+    for (var opt in menuOpt) {
+      routes.addAll({opt.route: (BuildContext context) => opt.screen});
+    }
+
+    return routes;
+  }
+
+  // static Map<String, Widget Function(BuildContext)> routes = {
+  //   '': (_) => const HomeScreen(),
+  //   'listview': (_) => Lisview2Screen(),
+  //   'alert': (_) => const AlertScreen(),
+  //   'card': (_) => const CardScreen(),
+  // };
 
   static Route<dynamic> onGenerateRoute(settings) {
     return MaterialPageRoute(builder: (context) => const HomeScreen());
