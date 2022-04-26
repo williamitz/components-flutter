@@ -6,13 +6,6 @@ import 'package:components_app/models/models.dart';
 class AppRouter {
   static const String initialRoute = '';
   static final menuOpt = <MenuOption>[
-    // TODO: borrar home
-
-    MenuOption(
-        screen: const HomeScreen(),
-        icon: Icons.home,
-        name: 'Home screen',
-        route: ''),
 
     MenuOption(
         screen: Lisview2Screen(),
@@ -31,10 +24,31 @@ class AppRouter {
         icon: Icons.chat_bubble_outline_outlined,
         name: 'Alert screen',
         route: 'alert'),
+
+    MenuOption(
+        screen: const AvatarScreen(),
+        icon: Icons.person_pin,
+        name: 'Avatar screen',
+        route: 'avatar'),
+
+    MenuOption(
+        screen: const AnimatedScreen(),
+        icon: Icons.play_circle_fill_outlined,
+        name: 'Animated screen',
+        route: 'animated'),
+        
+    MenuOption(
+        screen: const InputsScreen(),
+        icon: Icons.label_important_outline_rounded,
+        name: 'Inputs screen',
+        route: 'inputs'),
+        
   ];
 
   static Map<String, Widget Function(BuildContext)> buildRoute() {
     final Map<String, Widget Function(BuildContext)> routes = {};
+
+    routes.addAll({'': (BuildContext context) => const HomeScreen()});
 
     for (var opt in menuOpt) {
       routes.addAll({opt.route: (BuildContext context) => opt.screen});
