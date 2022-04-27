@@ -42,6 +42,18 @@ class AppRouter {
         icon: Icons.label_important_outline_rounded,
         name: 'Inputs screen',
         route: 'inputs'),
+
+    MenuOption(
+        screen: const SliderScreen(),
+        icon: Icons.label_important_outline_rounded,
+        name: 'Slider screen',
+        route: 'slider'),
+    
+    MenuOption(
+        screen: const ListViewBuilderScreen(),
+        icon: Icons.list_alt_rounded,
+        name: 'Listview builder',
+        route: 'lvbuilder'),
         
   ];
 
