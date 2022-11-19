@@ -1,5 +1,5 @@
-import 'package:components_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:components_app/theme/app_theme.dart';
 
 class ListViewBuilderScreen extends StatefulWidget {
   const ListViewBuilderScreen({Key? key}) : super(key: key);
@@ -14,14 +14,21 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
   final ScrollController scrollCtrl = ScrollController();
   bool loading = false;
 
+  int get counter {
+    return ids.length;
+  }
+
+  ScrollPosition get position {
+    return scrollCtrl.position;
+  } 
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     scrollCtrl.addListener(() {
-      final double current = scrollCtrl.position.pixels;
-      final double max = scrollCtrl.position.maxScrollExtent - 250;
+      final double current = position.pixels;
+      final double max = position.maxScrollExtent - 250;
 
       if (current >= max) loadData();
     });
@@ -40,10 +47,10 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     loading = false;
     setState(() {});
 
-    if ((scrollCtrl.position.pixels + 100) <=
-        scrollCtrl.position.maxScrollExtent) return;
+    if ((position.pixels + 100) <=  position.maxScrollExtent) return;
 
-    scrollCtrl.animateTo(scrollCtrl.position.pixels + 100,
+    scrollCtrl.animateTo(
+        position.pixels + 100,
         duration: const Duration(milliseconds: 250),
         curve: Curves.fastOutSlowIn);
   }
@@ -78,7 +85,7 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
             onRefresh: onRefresh,
             child: ListView.builder(
               controller: scrollCtrl,
-              itemCount: ids.length,
+              itemCount: counter,
               itemBuilder: (BuildContext context, int i) {
                 return FadeInImage(
                   width: double.infinity,
@@ -117,10 +124,10 @@ class _LoadingIcon extends StatelessWidget {
       width: 50,
       height: 50,
       decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2), shape: BoxShape.circle),
-      child: CircularProgressIndicator(
-        color: AppTheme.primary,
-      ),
+        color: Colors.white.withOpacity(0.2), shape: BoxShape.circle),
+        child: CircularProgressIndicator(
+          color: AppTheme.primary,
+        ),
     );
   }
 }

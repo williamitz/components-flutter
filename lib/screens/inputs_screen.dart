@@ -30,26 +30,29 @@ class InputsScreen extends StatelessWidget {
               children: [
                 CustomInputField(
                   labelText: 'Nombre',
-                  hintText: 'Nombre del usuario',
+                  helperText: 'Nombre del usuario',
                   frmProperty: 'first_name',
                   frmValues: frmValues,
+                  icon: Icons.person_outline,
                 ),
                 const SizedBox(
                   height: 30.0,
                 ),
                 CustomInputField(
                   labelText: 'Apellido',
-                  hintText: 'Apellido del usuario',
+                  helperText: 'Apellido del usuario',
                   frmProperty: 'last_name',
                   frmValues: frmValues,
+                  icon: Icons.person_outline,
                 ),
                 const SizedBox(
                   height: 30.0,
                 ),
                 CustomInputField(
                   labelText: 'Email',
-                  hintText: 'Email del usuario',
+                  helperText: 'Email del usuario',
                   keyboardType: TextInputType.emailAddress,
+                  icon: Icons.alternate_email_outlined,
                   frmProperty: 'email',
                   frmValues: frmValues,
                 ),
@@ -58,7 +61,7 @@ class InputsScreen extends StatelessWidget {
                 ),
                 CustomInputField(
                   labelText: 'Password',
-                  hintText: 'Password del usuario',
+                  helperText: 'Password del usuario',
                   obscureText: true,
                   icon: Icons.key_outlined,
                   frmProperty: 'password',
@@ -89,6 +92,10 @@ class InputsScreen extends StatelessWidget {
                       FocusScope.of(context).requestFocus(FocusNode());
 
                       if (!frmSingin.currentState!.validate()) return;
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
 
                       print('submit!! $frmValues');
                     },

@@ -10,9 +10,11 @@ class CustomInputField extends StatelessWidget {
   final IconData? suffixIcon;
 
   final TextInputType? keyboardType;
-  final bool? obscureText;
+  final bool obscureText;
 
   final String frmProperty;
+
+  // referencia del mapa
   final Map<String, String> frmValues;
 
   const CustomInputField({
@@ -23,7 +25,7 @@ class CustomInputField extends StatelessWidget {
     this.icon,
     this.suffixIcon,
     this.keyboardType,
-    this.obscureText, 
+    this.obscureText = false, 
     required this.frmProperty, 
     required this.frmValues,
   }) : super(key: key);
@@ -32,19 +34,19 @@ class CustomInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       autofocus: false,
-      obscureText: obscureText ?? false,
+      obscureText: obscureText,
       initialValue: '',
       textCapitalization: TextCapitalization.words,
       keyboardType: keyboardType ?? TextInputType.text,
       decoration: InputDecoration(
-        icon: icon == null ? null : Icon(icon),
+        icon: icon == null ? null : Icon( icon, color: AppTheme.primary, ),
         focusColor: AppTheme.primary,
         hoverColor: AppTheme.primary,
         labelText: labelText,
         hintText: hintText,
         helperText: helperText,
         // counterText: '3 letras',
-        suffixIcon: Icon(suffixIcon),
+        suffixIcon: Icon(suffixIcon, color: Colors.black26,),
       ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (String? val) {

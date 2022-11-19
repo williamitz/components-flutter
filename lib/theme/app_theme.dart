@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color _primary = Colors.indigo;
+  static const Color _primary = Color.fromRGBO(245, 124, 0, 1);
+
+  static const BorderRadius _inputBorder = BorderRadius.only( 
+    bottomLeft: Radius.circular(10.0), 
+    topRight: Radius.circular(10.0)
+  );
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: _primary,
@@ -9,7 +14,7 @@ class AppTheme {
 
     textButtonTheme:  TextButtonThemeData(
       style: TextButton.styleFrom(
-        primary: _primary
+        backgroundColor: _primary
       )
     ),
 
@@ -20,7 +25,7 @@ class AppTheme {
 
     elevatedButtonTheme:  ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        primary: _primary,
+        backgroundColor: _primary,
         shape: const StadiumBorder()
       )
     ),
@@ -33,26 +38,22 @@ class AppTheme {
         borderSide: BorderSide(
           color: _primary,          
         ),
-        borderRadius: BorderRadius.only( 
-          bottomLeft: Radius.circular(10.0), 
-          topRight: Radius.circular(10.0)
-        )
+        borderRadius: _inputBorder
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: _primary
         ),
-        borderRadius: BorderRadius.only( 
-          bottomLeft: Radius.circular(10.0) ,
-          topRight: Radius.circular(10.0), 
-        )
+        borderRadius: _inputBorder
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.red
+        ),
       ),
 
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.only( 
-          bottomLeft: Radius.circular(10.0) ,
-          topRight: Radius.circular(10.0)
-        )
+        borderRadius: _inputBorder
       )
     )
 

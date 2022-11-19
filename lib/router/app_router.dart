@@ -76,6 +76,8 @@ class AppRouter {
   //   'card': (_) => const CardScreen(),
   // };
 
+
+  // ruta por defecto
   static Route<dynamic> onGenerateRoute(settings) {
     return MaterialPageRoute(builder: (context) => const HomeScreen());
   }

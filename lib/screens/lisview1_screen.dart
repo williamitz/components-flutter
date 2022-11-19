@@ -14,6 +14,7 @@ class Lisview1Screen extends StatelessWidget {
       body: ListView(
         children: [
           
+          /// operador expred para extraer cada elemento
           ...options.map(
             (e) => MenuListTile( title: e, )
           ).toList(),
